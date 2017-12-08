@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Card : MonoBehaviour {
 
-    public int Cost = 2;
-    public bool hasTarget = true;
-
+    public Stats Cost;
     public Stats UserEffects;
+    public bool hasTarget = true;
     public Stats TargetEffects;
+
+    public bool isPlayable(Player Owner)
+    {
+        return Owner.stats.isGreater(Cost);
+    }
 
     public void Activate(Player Owner, Player Target)
     {

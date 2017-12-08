@@ -17,10 +17,10 @@ ExportedObj/
 obj/
 *.svd
 *.userprefs
-/*.csproj
+CardGame/*.csproj
 *.pidb
 *.suo
-/*.sln
+CardGame/*.sln
 *.user
 *.unityproj
 *.booproj
