@@ -1,0 +1,38 @@
+# =============== #
+# Unity generated #
+# =============== #
+CardGame/Temp/
+CardGame/UnityPackageManager
+CardGame/Library/
+CardGame/Assets/BigFiles/
+build_Data/
+build.exe
+UnityPlayer.dll
+WinPixEventRuntime.dll
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+.vs/
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
