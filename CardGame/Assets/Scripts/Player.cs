@@ -6,6 +6,12 @@ public class Player : MonoBehaviour {
 
     public Stats stats;
     public Card[] Hand = new Card[8];
+    public Player Enemy;
+    public LayerMask CardLayer;
+
+    public bool isMyTurn = false;
+    private Ray ray;
+    private RaycastHit hit;
     
 	void Start () {
         OnGameStart();
@@ -16,24 +22,33 @@ public class Player : MonoBehaviour {
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
         for (int i = 0; i < 8; i++)
         {
-            Hand[i] = RandomDeck.instance.DrawCard();
-            Hand[i].MoveTo(HandManager.instance.CardsTransforms[i]);
+            DrawCard(i);
         }
     }
 
     public void OnTurnStart()
     {
         stats.Update();
+        isMyTurn = true;
     }
 
     public void OnTurnEnd()
     {
-
+        isMyTurn = false;
     }
 
-    public void UseCard(int pos)
+    public void UseCard(int pos, Player Target)
     {
+        Hand[pos].Activate(this, Target);
+        Hand[pos].Discard();
+        DrawCard(pos);
+    }
 
+    public void DrawCard(int pos)
+    {
+        Hand[pos] = RandomDeck.instance.DrawCard();
+        Hand[pos].MoveTo(HandManager.instance.CardsTransforms[pos]);
+        Hand[pos].PosInHand = pos;
     }
 
     public void ApplyStats(Stats Effect)
@@ -44,6 +59,22 @@ public class Player : MonoBehaviour {
     public void ApplyStats(int Amount, StatsType statsType)
     {
         stats.ApplyStats(Amount, statsType);
+    }
+
+    private void Update()
+    {
+        if (!isMyTurn)
+            return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 50, CardLayer))
+            {
+                Card card = hit.collider.GetComponentInParent<Card>();
+                UseCard(card.PosInHand, Enemy);
+            }
+        }
     }
 }
 

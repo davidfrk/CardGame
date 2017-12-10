@@ -22,6 +22,8 @@ public class Card : MonoBehaviour {
     internal Transform targetTransform;
     internal Quaternion targetRotation;
 
+    internal int PosInHand;
+
 
     public bool isPlayable(Player Owner)
     {
@@ -173,6 +175,11 @@ public class Card : MonoBehaviour {
             transform.position = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * movementSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
+    }
+
+    public void Discard()
+    {
+        Destroy(this.gameObject);
     }
 }
 

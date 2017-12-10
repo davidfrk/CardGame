@@ -679,10 +679,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8574c1fd34d60964dbebb36f30b44d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 0
-  CostType: 0
-  hasTarget: 1
-  EffectStrength: 1
+  Cost: 2
+  CostType: 3
+  hasTarget: 0
+  EffectStrength: 4
   SecondaryEffectStrength: 0
   targetPlayers: 0
   targetStats: 0
