@@ -16,13 +16,24 @@ public class Player : MonoBehaviour {
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
         for (int i = 0; i < 8; i++)
         {
-            Hand[i] = RandomDeck.instance.NextCard();
+            Hand[i] = RandomDeck.instance.DrawCard();
+            Hand[i].MoveTo(HandManager.instance.CardsTransforms[i]);
         }
     }
 
     public void OnTurnStart()
     {
         stats.Update();
+    }
+
+    public void OnTurnEnd()
+    {
+
+    }
+
+    public void UseCard(int pos)
+    {
+
     }
 
     public void ApplyStats(Stats Effect)

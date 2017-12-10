@@ -21,7 +21,7 @@ public class RandomDeck : MonoBehaviour {
         }
     }
 
-    public Card NextCard()
+    private Card NextCard()
     {
         int rand = Random.Range(1, cardsCount);
         int tempCount = 0;
@@ -32,6 +32,12 @@ public class RandomDeck : MonoBehaviour {
                 return cardCount.card;
         }
         return null;
+    }
+
+    public Card DrawCard()
+    {
+        GameObject go = Instantiate(NextCard().gameObject, transform.position, transform.rotation);
+        return go.GetComponent<Card>();
     }
 }
 

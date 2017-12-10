@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class Card : MonoBehaviour {
 
+    [Header("Cost")]
     public int Cost;
     public StatsType CostType;
 
+    [Header("Effect")]
     public bool hasTarget = true;
     public int EffectStrength = 1;
     public int SecondaryEffectStrength = 0;
     public TargetPlayers targetPlayers;
     public TargetStats targetStats;
+
+    [Header("Movement")]
+    [SerializeField] private float movementSpeed = 10;
+    [SerializeField] private float rotationSpeed = 1;
+    internal bool flipState = false;
+    internal Transform targetTransform;
+    internal Quaternion targetRotation;
+
 
     public bool isPlayable(Player Owner)
     {
@@ -130,6 +140,38 @@ public class Card : MonoBehaviour {
                 }
             default:
                 break;
+        }
+    }
+
+    public void Flip()
+    {
+        flipState = !flipState;
+    }
+
+    public void Flip(bool state)
+    {
+        flipState = state;
+    }
+
+    public void MoveTo(Transform transform)
+    {
+        targetTransform = transform;
+        if (flipState == true)
+        {
+            targetRotation = Quaternion.LookRotation(-transform.forward, transform.up);
+        }
+        else
+        {
+            targetRotation = Quaternion.LookRotation(transform.forward, transform.up);
+        }
+    }
+
+    void Update()
+    {
+        if (targetTransform != null)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * movementSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
 }
