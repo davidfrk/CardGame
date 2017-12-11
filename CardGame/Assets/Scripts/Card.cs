@@ -15,9 +15,6 @@ public class Card : MonoBehaviour {
     public TargetPlayers targetPlayers;
     public TargetStats targetStats;
 
-    [Header("Movement")]
-    [SerializeField] private float movementSpeed = 10;
-    [SerializeField] private float rotationSpeed = 1;
     internal bool flipState = false;
     internal Transform targetTransform;
     internal Quaternion targetRotation;
@@ -148,23 +145,35 @@ public class Card : MonoBehaviour {
     public void Flip()
     {
         flipState = !flipState;
+        UpdateRotation();
     }
 
     public void Flip(bool state)
     {
         flipState = state;
+        UpdateRotation();
+    }
+
+    public void SetActive(bool state)
+    {
+        this.gameObject.SetActive(state);
     }
 
     public void MoveTo(Transform transform)
     {
         targetTransform = transform;
+        UpdateRotation();
+    }
+
+    public void UpdateRotation()
+    {
         if (flipState == true)
         {
-            targetRotation = Quaternion.LookRotation(-transform.forward, transform.up);
+            targetRotation = Quaternion.LookRotation(-targetTransform.forward, targetTransform.up);
         }
         else
         {
-            targetRotation = Quaternion.LookRotation(transform.forward, transform.up);
+            targetRotation = Quaternion.LookRotation(targetTransform.forward, targetTransform.up);
         }
     }
 
@@ -172,8 +181,8 @@ public class Card : MonoBehaviour {
     {
         if (targetTransform != null)
         {
-            transform.position = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * movementSpeed);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            transform.position = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * GameManager.instance.CardMovementSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * GameManager.instance.CardRotationSpeed);
         }
     }
 

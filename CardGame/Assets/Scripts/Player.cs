@@ -12,36 +12,69 @@ public class Player : MonoBehaviour {
     public bool isMyTurn = false;
     private Ray ray;
     private RaycastHit hit;
-    
-	void Start () {
+
+    private int numberOfCards = 8;
+    private bool isFirstTurn = true;
+    private int turn = 0;
+
+    void Start () {
         OnGameStart();
 	}
 
     public void OnGameStart()
     {
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
-        for (int i = 0; i < 8; i++)
+        if (isMyTurn)
+        {
+            StartTurn();
+        }
+    }
+
+    public void DrawCards()
+    {
+        for (int i = 0; i < numberOfCards; i++)
         {
             DrawCard(i);
         }
     }
 
+    public void StartTurn()
+    {
+        turn++;
+        stats.Update();
+        if (isFirstTurn)
+        {
+            isFirstTurn = false;
+            DrawCards();
+            Invoke("OnTurnStart", GameManager.instance.DrawCardDuration);
+        }
+        else
+        {
+            ShowCards(true);
+            FlipCardsToStartTurn();
+        }
+    }
+
     public void OnTurnStart()
     {
-        stats.Update();
         isMyTurn = true;
+        Debug.Log("Turn " + turn + " to " + this.gameObject);
     }
 
     public void OnTurnEnd()
     {
+        ShowCards(false);
         isMyTurn = false;
+        Enemy.StartTurn();
     }
 
     public void UseCard(int pos, Player Target)
     {
+        isMyTurn = false;
         Hand[pos].Activate(this, Target);
         Hand[pos].Discard();
         DrawCard(pos);
+        Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
     }
 
     public void DrawCard(int pos)
@@ -59,6 +92,34 @@ public class Player : MonoBehaviour {
     public void ApplyStats(int Amount, StatsType statsType)
     {
         stats.ApplyStats(Amount, statsType);
+    }
+
+    public void FlipCardsToStartTurn()
+    {
+        FlipCards(false);
+        Invoke("OnTurnStart", GameManager.instance.FlipCardDuration);
+    }
+
+    public void FlipCardsToEndTurn()
+    {
+        FlipCards(true);
+        Invoke("OnTurnEnd", GameManager.instance.FlipCardDuration);
+    }
+
+    public void FlipCards(bool state)
+    {
+        for (int i = 0; i < numberOfCards; i++)
+        {
+            Hand[i].Flip(state);
+        }
+    }
+
+    public void ShowCards(bool state)
+    {
+        for (int i = 0; i < numberOfCards; i++)
+        {
+            Hand[i].SetActive(state);
+        }
     }
 
     private void Update()

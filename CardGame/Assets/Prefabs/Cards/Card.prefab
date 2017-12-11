@@ -686,8 +686,8 @@ MonoBehaviour:
   SecondaryEffectStrength: 0
   targetPlayers: 0
   targetStats: 0
-  movementSpeed: 1
-  rotationSpeed: 1
+  movementSpeed: 2
+  rotationSpeed: 2
 --- !u!114 &114950822278963824
 MonoBehaviour:
   m_ObjectHideFlags: 1
