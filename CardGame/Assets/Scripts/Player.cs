@@ -190,6 +190,7 @@ public class Stats
 [System.Serializable]
 public class PlayerStat
 {
+    [SerializeField]
     private int value;
     public IntEvent StatEvent;
     public int Value
