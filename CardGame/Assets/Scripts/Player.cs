@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour {
 
@@ -151,68 +152,99 @@ public class Stats
     private int mages;
     private int magic;
 
+    public IntEvent HpEvent;
+    public IntEvent DefenseEvent;
+    public IntEvent WorkersEvent;
+    public IntEvent MaterialsEvent;
+    public IntEvent GeneralsEvent;
+    public IntEvent SoldiersEvent;
+    public IntEvent MagesEvent;
+    public IntEvent MagicEvent;
+
     public int Hp
     {
         get { return hp; }
         set
         {
-            if (value <= 0)
-            {
-                hp = 0;
-                //Lost
-            }
-            else if (value >= 100)
-            {
-                hp = 100;
-                //Won
-            }
-            else
-            {
-                hp = value;
-            }
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != hp) { hp = newValue; HpEvent.Invoke(newValue); }
+            else { hp = newValue; }
         }
     }
 
     public int Defense
     {
         get { return defense; }
-        set { defense = Mathf.Clamp(value, 0, 100); }
+        set { int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != defense) { defense = newValue; DefenseEvent.Invoke(newValue); }
+            else { defense = newValue; }
+        }
     }
 
     public int Workers
     {
         get { return workers; }
-        set { workers = Mathf.Clamp(value, 0, 100); }
+        set
+        {
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != workers) { workers = newValue; WorkersEvent.Invoke(newValue); }
+            else { workers = newValue; }
+        }
     }
 
     public int Materials
     {
         get { return materials; }
-        set { materials = Mathf.Clamp(value, 0, 100); }
+        set
+        {
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != materials) { materials = newValue; MaterialsEvent.Invoke(newValue); }
+            else { materials = newValue; }
+        }
     }
 
     public int Generals
     {
         get { return generals; }
-        set { generals = Mathf.Clamp(value, 0, 100); }
+        set
+        {
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != generals) { generals = newValue; GeneralsEvent.Invoke(newValue); }
+            else { generals = newValue; }
+        }
     }
 
     public int Soldiers
     {
         get { return soldiers; }
-        set { soldiers = Mathf.Clamp(value, 0, 100); }
+        set
+        {
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != soldiers) { soldiers = newValue; SoldiersEvent.Invoke(newValue); }
+            else { soldiers = newValue; }
+        }
     }
 
     public int Mages
     {
         get { return mages; }
-        set { mages = Mathf.Clamp(value, 0, 100); }
+        set
+        {
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != mages) { mages = newValue; MagesEvent.Invoke(newValue); }
+            else { mages = newValue; }
+        }
     }
 
     public int Magic
     {
         get { return magic; }
-        set { defense = Mathf.Clamp(value, 0, 100); }
+        set
+        {
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != magic) { magic = newValue; MagicEvent.Invoke(newValue); }
+            else { magic = newValue; }
+        }
     }
 
     public void Set(int Hp, int Defense, int Workers, int Materials, int Generals, int Soldiers, int Mages, int Magic)
@@ -354,4 +386,10 @@ public enum StatsType
     Soldiers,
     Mages,
     Magic
+}
+
+[System.Serializable]
+public class IntEvent : UnityEvent<int>
+{
+
 }
