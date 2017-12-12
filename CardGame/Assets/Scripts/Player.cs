@@ -143,234 +143,63 @@ public class Player : MonoBehaviour {
 [System.Serializable]
 public class Stats
 {
-    private int hp;
-    private int defense;
-    private int workers;
-    private int materials;
-    private int generals;
-    private int soldiers;
-    private int mages;
-    private int magic;
-
-    public IntEvent HpEvent;
-    public IntEvent DefenseEvent;
-    public IntEvent WorkersEvent;
-    public IntEvent MaterialsEvent;
-    public IntEvent GeneralsEvent;
-    public IntEvent SoldiersEvent;
-    public IntEvent MagesEvent;
-    public IntEvent MagicEvent;
-
-    public int Hp
-    {
-        get { return hp; }
-        set
-        {
-            int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != hp) { hp = newValue; HpEvent.Invoke(newValue); }
-            else { hp = newValue; }
-        }
-    }
-
-    public int Defense
-    {
-        get { return defense; }
-        set { int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != defense) { defense = newValue; DefenseEvent.Invoke(newValue); }
-            else { defense = newValue; }
-        }
-    }
-
-    public int Workers
-    {
-        get { return workers; }
-        set
-        {
-            int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != workers) { workers = newValue; WorkersEvent.Invoke(newValue); }
-            else { workers = newValue; }
-        }
-    }
-
-    public int Materials
-    {
-        get { return materials; }
-        set
-        {
-            int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != materials) { materials = newValue; MaterialsEvent.Invoke(newValue); }
-            else { materials = newValue; }
-        }
-    }
-
-    public int Generals
-    {
-        get { return generals; }
-        set
-        {
-            int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != generals) { generals = newValue; GeneralsEvent.Invoke(newValue); }
-            else { generals = newValue; }
-        }
-    }
-
-    public int Soldiers
-    {
-        get { return soldiers; }
-        set
-        {
-            int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != soldiers) { soldiers = newValue; SoldiersEvent.Invoke(newValue); }
-            else { soldiers = newValue; }
-        }
-    }
-
-    public int Mages
-    {
-        get { return mages; }
-        set
-        {
-            int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != mages) { mages = newValue; MagesEvent.Invoke(newValue); }
-            else { mages = newValue; }
-        }
-    }
-
-    public int Magic
-    {
-        get { return magic; }
-        set
-        {
-            int newValue = Mathf.Clamp(value, 0, 100);
-            if (newValue != magic) { magic = newValue; MagicEvent.Invoke(newValue); }
-            else { magic = newValue; }
-        }
-    }
+    public PlayerStat[] Stat = new PlayerStat[8];
 
     public void Set(int Hp, int Defense, int Workers, int Materials, int Generals, int Soldiers, int Mages, int Magic)
     {
-        this.Hp = Hp;
-        this.Defense = Defense;
-        this.Workers = Workers;
-        this.Materials = Materials;
-        this.Generals = Generals;
-        this.Soldiers = Soldiers;
-        this.Mages = Mages;
-        this.Magic = Magic;
+        Stat[0].Value = Hp;
+        Stat[1].Value = Defense;
+        Stat[2].Value = Workers;
+        Stat[3].Value = Materials;
+        Stat[4].Value = Generals;
+        Stat[5].Value = Soldiers;
+        Stat[6].Value = Mages;
+        Stat[7].Value = Magic;
     }
 
     public void Update()
     {
-        Materials += Workers;
-        Soldiers += Generals;
-        Magic += Mages;
+        Stat[(int) StatsType.Materials].Value += Stat[(int)StatsType.Workers].Value;
+        Stat[(int)StatsType.Soldiers].Value += Stat[(int)StatsType.Generals].Value;
+        Stat[(int)StatsType.Magic].Value += Stat[(int)StatsType.Mages].Value;
     }
 
     public void Add(Stats stats)
     {
-        Hp += stats.Hp;
-        Defense += stats. Defense;
-        Workers += stats.Workers;
-        Materials += stats.Materials;
-        Generals += stats.Generals;
-        Soldiers += stats.Soldiers;
-        Mages += stats.Mages;
-        Magic += stats.Magic;
-    }
-
-    public bool isGreater(Stats other)
-    {
-        return (hp >= other.hp && Defense >= other.Defense && Workers >= other.Workers && Materials >= other.Materials &&
-                Generals >= other.Generals && Soldiers >= other.Soldiers && Mages >= other.Mages && Magic >= other.Magic);
+        Stat[0].Value = stats.Stat[0].Value;
+        Stat[1].Value = stats.Stat[1].Value;
+        Stat[2].Value = stats.Stat[2].Value;
+        Stat[3].Value = stats.Stat[3].Value;
+        Stat[4].Value = stats.Stat[4].Value;
+        Stat[5].Value = stats.Stat[5].Value;
+        Stat[6].Value = stats.Stat[6].Value;
+        Stat[7].Value = stats.Stat[7].Value;
     }
 
     public void ApplyStats(int Amount, StatsType statsType)
     {
-        switch (statsType)
-        {
-            case StatsType.Hp:
-                {
-                    Hp += Amount;
-                    break;
-                }
-            case StatsType.Defense:
-                {
-                    Defense += Amount;
-                    break;
-                }
-            case StatsType.Workers:
-                {
-                    Workers += Amount;
-                    break;
-                }
-            case StatsType.Materials:
-                {
-                    Materials += Amount;
-                    break;
-                }
-            case StatsType.Generals:
-                {
-                    Generals += Amount;
-                    break;
-                }
-            case StatsType.Soldiers:
-                {
-                    Soldiers += Amount;
-                    break;
-                }
-            case StatsType.Mages:
-                {
-                    Mages += Amount;
-                    break;
-                }
-            case StatsType.Magic:
-                {
-                    Magic += Amount;
-                    break;
-                }
-            default:
-                break;
-        }
+        Stat[(int)statsType].Value += Amount;
     }
 
     public int GetStat(StatsType statsType)
     {
-        switch (statsType)
+        return Stat[(int)statsType].Value;
+    }
+}
+
+[System.Serializable]
+public class PlayerStat
+{
+    private int value;
+    public IntEvent StatEvent;
+    public int Value
+    {
+        get { return value; }
+        set
         {
-            case StatsType.Hp:
-                {
-                    return Hp; ;
-                }
-            case StatsType.Defense:
-                {
-                    return Defense; ;
-                }
-            case StatsType.Workers:
-                {
-                    return Workers;
-                }
-            case StatsType.Materials:
-                {
-                    return Materials;
-                }
-            case StatsType.Generals:
-                {
-                    return Generals;
-                }
-            case StatsType.Soldiers:
-                {
-                    return Soldiers;
-                }
-            case StatsType.Mages:
-                {
-                    return Mages;
-                }
-            case StatsType.Magic:
-                {
-                    return Magic;
-                }
-            default:
-                return 0;
+            int newValue = Mathf.Clamp(value, 0, 100);
+            if (newValue != this.value) { this.value = newValue; StatEvent.Invoke(newValue); }
+            else { this.value = newValue; }
         }
     }
 }

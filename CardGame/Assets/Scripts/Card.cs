@@ -71,70 +71,67 @@ public class Card : MonoBehaviour {
         {
             case TargetStats.Hp:
                 {
-                    Target.stats.Hp += EffectStrength * Multiplier;
+                    Target.stats.Stat[0].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Defense:
                 {
-                    Target.stats.Defense += EffectStrength * Multiplier;
+                    Target.stats.Stat[1].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Workers:
                 {
-                    Target.stats.Workers += EffectStrength * Multiplier;
+                    Target.stats.Stat[2].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Materials:
                 {
-                    Target.stats.Materials += EffectStrength * Multiplier;
+                    Target.stats.Stat[3].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Generals:
                 {
-                    Target.stats.Generals += EffectStrength * Multiplier;
+                    Target.stats.Stat[4].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Soldiers:
                 {
-                    Target.stats.Soldiers += EffectStrength * Multiplier;
+                    Target.stats.Stat[5].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Mages:
                 {
-                    Target.stats.Mages += EffectStrength * Multiplier;
+                    Target.stats.Stat[6].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Magic:
                 {
-                    Target.stats.Magic += EffectStrength * Multiplier;
+                    Target.stats.Stat[7].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Stocks:
                 {
-                    Target.stats.Materials += EffectStrength * Multiplier;
-                    Target.stats.Soldiers += EffectStrength * Multiplier;
-                    Target.stats.Magic += EffectStrength * Multiplier;
+                    Target.stats.Stat[(int)StatsType.Materials].Value += EffectStrength * Multiplier;
+                    Target.stats.Stat[(int)StatsType.Soldiers].Value += EffectStrength * Multiplier;
+                    Target.stats.Stat[(int)StatsType.Magic].Value += EffectStrength * Multiplier;
                     break;
                 }
             case TargetStats.Attack:
                 {
-                    int damage = EffectStrength - Target.stats.Defense;
+                    int damage = EffectStrength - Target.stats.Stat[(int)StatsType.Defense].Value;
                     damage = Mathf.Max(0, damage);
 
-                    Target.stats.Defense -= EffectStrength;
-                    Target.stats.Hp -= damage;
+                    Target.stats.Stat[(int)StatsType.Defense].Value -= EffectStrength;
+                    Target.stats.Stat[(int)StatsType.Hp].Value -= damage;
                     break;
                 }
             case TargetStats.All:
                 {
-                    Target.stats.Hp += EffectStrength * Multiplier;
-                    Target.stats.Defense += EffectStrength * Multiplier;
-                    Target.stats.Workers += EffectStrength * Multiplier;
-                    Target.stats.Materials += EffectStrength * Multiplier;
-                    Target.stats.Generals += EffectStrength * Multiplier;
-                    Target.stats.Soldiers += EffectStrength * Multiplier;
-                    Target.stats.Mages += EffectStrength * Multiplier;
-                    Target.stats.Magic += EffectStrength * Multiplier;
+                    int Strength = EffectStrength * Multiplier;
+                    for (int i = 0; i <8; i++)
+                    {
+                        Target.stats.Stat[i].Value += Strength;
+                    }
                     break;
                 }
             default:
