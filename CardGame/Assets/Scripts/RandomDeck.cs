@@ -17,13 +17,13 @@ public class RandomDeck : MonoBehaviour {
     {
         foreach (CardCount cardCount in Cards)
         {
-            cardCount.count += cardCount.count;
+            cardsCount += cardCount.count;
         }
     }
 
     private Card NextCard()
     {
-        int rand = Random.Range(1, cardsCount);
+        int rand = Random.Range(1, cardsCount + 1);
         int tempCount = 0;
         foreach (CardCount cardCount in Cards)
         {

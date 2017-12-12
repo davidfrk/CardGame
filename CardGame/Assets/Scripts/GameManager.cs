@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     static public GameManager instance;
+
+    [Header("StatsSymbols")]
+    public Sprite[] StatsSymbols = new Sprite[8];
 
     [Header("CardEffects")]
     public float CardMovementSpeed = 2;
@@ -12,7 +16,7 @@ public class GameManager : MonoBehaviour {
     public float DrawCardDuration = 3;
     public float FlipCardDuration = 1.8f;
 
-    private void Awake()
+    GameManager()
     {
         instance = this;
     }

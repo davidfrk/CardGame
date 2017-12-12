@@ -71,11 +71,18 @@ public class Player : MonoBehaviour {
 
     public void UseCard(int pos, Player Target)
     {
-        isMyTurn = false;
-        Hand[pos].Activate(this, Target);
-        Hand[pos].Discard();
-        DrawCard(pos);
-        Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
+        if (Hand[pos].isPlayable(this))
+        {
+            isMyTurn = false;
+            Hand[pos].Activate(this, Target);
+            Hand[pos].Discard();
+            DrawCard(pos);
+            Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
+        }
+        else
+        {
+            //PlaySound
+        }
     }
 
     public void DrawCard(int pos)

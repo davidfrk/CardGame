@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Card : MonoBehaviour {
 
@@ -20,6 +24,12 @@ public class Card : MonoBehaviour {
     internal Quaternion targetRotation;
 
     internal int PosInHand;
+
+    [Header("Design")]
+    public Text cardName;
+    public Text costText;
+    public Image costImage;
+    public Text descriptionText;
 
 
     public bool isPlayable(Player Owner)
@@ -187,6 +197,15 @@ public class Card : MonoBehaviour {
     {
         Destroy(this.gameObject);
     }
+
+    public void UpdateDesign()
+    {
+        costImage.sprite = GameManager.instance.StatsSymbols[(int)CostType];
+        costText.text = Cost.ToString();
+        descriptionText.text = "Affects " + targetPlayers.ToString() + "\n"
+                                + targetStats.ToString() + " by " + EffectStrength;
+        cardName.text = gameObject.name;
+    }
 }
 
 public enum TargetPlayers
@@ -211,3 +230,20 @@ public enum TargetStats
     Attack,
     All,
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(Card))]
+public class CardEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        Card card = (Card)target;
+        if (GUILayout.Button("UpdateDesign"))
+        {
+            card.UpdateDesign();
+        }
+    }
+}
+#endif
