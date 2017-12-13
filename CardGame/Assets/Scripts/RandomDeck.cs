@@ -5,8 +5,10 @@ using UnityEngine;
 public class RandomDeck : MonoBehaviour {
 
     static public RandomDeck instance;
+    public Transform Graveyard;
     public List<CardCount> Cards;
     int cardsCount = 0;
+    Card graveyard;
 
     void Awake()
     {
@@ -38,6 +40,15 @@ public class RandomDeck : MonoBehaviour {
     {
         GameObject go = Instantiate(NextCard().gameObject, transform.position, transform.rotation);
         return go.GetComponent<Card>();
+    }
+
+    public void AddToGraveyard(Card card)
+    {
+        if (graveyard != null)
+        {
+            Destroy(graveyard.gameObject, GameManager.instance.DrawCardDuration);
+        }
+        graveyard = card;
     }
 }
 

@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
         if (isMyTurn)
         {
+            isMyTurn = false;
             StartTurn();
         }
     }
@@ -83,6 +84,14 @@ public class Player : MonoBehaviour {
         {
             //PlaySound
         }
+    }
+
+    public void Discard(int pos)
+    {
+        isMyTurn = false;
+        Hand[pos].Discard();
+        DrawCard(pos);
+        Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
     }
 
     public void DrawCard(int pos)
@@ -142,6 +151,14 @@ public class Player : MonoBehaviour {
             {
                 Card card = hit.collider.GetComponentInParent<Card>();
                 UseCard(card.PosInHand, Enemy);
+            }
+        }else if (Input.GetMouseButtonDown(1))
+        {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 50, CardLayer))
+            {
+                Card card = hit.collider.GetComponentInParent<Card>();
+                Discard(card.PosInHand);
             }
         }
     }

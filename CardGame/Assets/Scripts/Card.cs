@@ -195,7 +195,9 @@ public class Card : MonoBehaviour {
 
     public void Discard()
     {
-        Destroy(this.gameObject);
+        flipState = true;
+        MoveTo(RandomDeck.instance.Graveyard);
+        RandomDeck.instance.AddToGraveyard(this);
     }
 
     public void UpdateDesign()
