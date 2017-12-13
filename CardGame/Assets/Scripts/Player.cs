@@ -55,6 +55,7 @@ public class Player : MonoBehaviour {
             ShowCards(true);
             FlipCardsToStartTurn();
         }
+        GameManager.instance.TurnStartSound.Play();
     }
 
     public void OnTurnStart()

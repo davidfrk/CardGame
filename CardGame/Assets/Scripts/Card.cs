@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEditor;
 #endif
 
+[RequireComponent(typeof(AudioSource))]
 public class Card : MonoBehaviour {
 
     [Header("Cost")]
@@ -30,6 +31,13 @@ public class Card : MonoBehaviour {
     public Text costText;
     public Image costImage;
     public Text descriptionText;
+
+    private AudioSource audioEffect;
+
+    private void Awake()
+    {
+        audioEffect = GetComponent<AudioSource>();
+    }
 
 
     public bool isPlayable(Player Owner)
@@ -73,6 +81,8 @@ public class Card : MonoBehaviour {
             default:
                 break;
         }
+        if (audioEffect != null)
+            audioEffect.Play();
     }
 
     void ApplyEffect(Player Target, int Multiplier)
@@ -198,6 +208,7 @@ public class Card : MonoBehaviour {
         flipState = true;
         MoveTo(RandomDeck.instance.Graveyard);
         RandomDeck.instance.AddToGraveyard(this);
+        GameManager.instance.DiscardSound.Play();
     }
 
     public void UpdateDesign()

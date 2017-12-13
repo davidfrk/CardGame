@@ -195,6 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224766368893456700}
   - component: {fileID: 114703292806778380}
+  - component: {fileID: 82544946023161778}
   m_Layer: 8
   m_Name: Balance
   m_TagString: Card
@@ -265,6 +266,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.56, y: 5.6, z: 0.2}
   m_Center: {x: 0, y: 2.75, z: 0}
+--- !u!82 &82544946023161778
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862305978472058}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114061332682465090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,9 +443,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Balance
-
-'
+  m_Text: Balance
 --- !u!114 &114467566885829716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,6 +546,7 @@ MonoBehaviour:
   SecondaryEffectStrength: 0
   targetPlayers: 3
   targetStats: 10
+  cardName: {fileID: 114311301239515642}
   costText: {fileID: 114812911631540686}
   costImage: {fileID: 114859682500055212}
   descriptionText: {fileID: 114772614425669516}

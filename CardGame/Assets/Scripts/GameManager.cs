@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour {
     public float DrawCardDuration = 3;
     public float FlipCardDuration = 1.8f;
 
+    [Header("SoundEffects")]
+    public AudioSource TurnStartSound;
+    public AudioSource VictorySound;
+    public AudioSource DiscardSound;
+
     GameManager()
     {
         instance = this;
