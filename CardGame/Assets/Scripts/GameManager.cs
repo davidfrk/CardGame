@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour {
 
@@ -25,8 +26,55 @@ public class GameManager : MonoBehaviour {
     public AudioSource VictorySound;
     public AudioSource DiscardSound;
 
+    [Header("Events")]
+    public VictoryEvent VictoryEvent;
+    internal VictoryType VictoryType;
+    internal Player VictoriousPlayer;
+    public UnityEvent GameStart;
+
+    internal bool isPlaying = false;
+
     GameManager()
     {
         instance = this;
     }
+
+    private void Start()
+    {
+        Invoke("StartGame", 1f);
+    }
+
+    public void StartGame()
+    {
+        isPlaying = true;
+        GameStart.Invoke();
+    }
+
+    public void PlayerDied(Player player)
+    {
+        VictoryType = VictoryType.Demolition;
+        VictoriousPlayer = player.Enemy;
+        isPlaying = false;
+        VictoryEvent.Invoke(VictoriousPlayer, VictoryType);
+    }
+
+    public void PlayerWon(Player player)
+    {
+        VictoryType = VictoryType.Supremacy;
+        VictoriousPlayer = player;
+        isPlaying = false;
+        VictoryEvent.Invoke(VictoriousPlayer, VictoryType);
+    }
+}
+
+public enum VictoryType
+{
+    Supremacy,
+    Demolition
+}
+
+[System.Serializable]
+public class VictoryEvent : UnityEvent<Player, VictoryType>
+{
+    
 }

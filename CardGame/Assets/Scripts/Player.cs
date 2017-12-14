@@ -19,7 +19,8 @@ public class Player : MonoBehaviour {
     private int turn = 0;
 
     void Start () {
-        OnGameStart();
+        stats.Stat[0].StatEvent.AddListener(VictoryCondition);
+        GameManager.instance.GameStart.AddListener(OnGameStart);
 	}
 
     public void OnGameStart()
@@ -139,6 +140,17 @@ public class Player : MonoBehaviour {
         for (int i = 0; i < numberOfCards; i++)
         {
             Hand[i].SetActive(state);
+        }
+    }
+
+    private void VictoryCondition(int hp)
+    {
+        if (hp == 100)
+        {
+            GameManager.instance.PlayerWon(this);
+        }else if (hp == 0)
+        {
+            GameManager.instance.PlayerDied(this);
         }
     }
 
