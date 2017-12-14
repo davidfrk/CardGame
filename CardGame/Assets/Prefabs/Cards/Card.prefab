@@ -660,7 +660,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Affects Owner
 
-    Defense by 4'
+    Hp by 10'
 --- !u!114 &114853264584612710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -750,7 +750,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: 5
 --- !u!114 &114929585441714318
 MonoBehaviour:
   m_ObjectHideFlags: 1

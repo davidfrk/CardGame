@@ -44,6 +44,7 @@ public class Player : MonoBehaviour {
     {
         turn++;
         stats.Update();
+
         if (isFirstTurn)
         {
             isFirstTurn = false;
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour {
     {
         isMyTurn = true;
         Debug.Log("Turn " + turn + " to " + this.gameObject);
+        GameManager.instance.isVisualEffectsActive = true;
     }
 
     public void OnTurnEnd()

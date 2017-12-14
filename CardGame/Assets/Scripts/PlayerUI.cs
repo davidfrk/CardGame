@@ -26,7 +26,16 @@ public class StatUI
 {
     public Text text;
     public Image image;
+    public GameObject changeEffectTransform;
+    public Text changeEffectText;
+
+    private int stat = 0;
+
     public void OnStatChange(int stat) {
         text.text = stat.ToString();
+        changeEffectText.text = (stat - this.stat).ToString();
+        this.stat = stat;
+        if(GameManager.instance.isVisualEffectsActive)
+            changeEffectTransform.SetActive(true);
     }
 }

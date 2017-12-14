@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour {
     public float DrawCardDuration = 3;
     public float FlipCardDuration = 1.8f;
 
+    [Header("VisualEffects")]
+    public float StatsChangeEffectDuration = 2;
+    internal bool isVisualEffectsActive = false;
+
     [Header("SoundEffects")]
     public AudioSource TurnStartSound;
     public AudioSource VictorySound;

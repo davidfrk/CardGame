@@ -307,6 +307,7 @@ MonoBehaviour:
   CardRotationSpeed: 2
   DrawCardDuration: 3
   FlipCardDuration: 1.8
+  StatsChangeEffectDuration: 3
   TurnStartSound: {fileID: 82670153214886788}
   VictorySound: {fileID: 82102088576829302}
   DiscardSound: {fileID: 82042773962266132}
