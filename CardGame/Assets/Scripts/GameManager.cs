@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour {
         VictoriousPlayer = player.Enemy;
         isPlaying = false;
         VictoryEvent.Invoke(VictoriousPlayer, VictoryType);
+        VictorySound.Play();
     }
 
     public void PlayerWon(Player player)
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour {
         VictoriousPlayer = player;
         isPlaying = false;
         VictoryEvent.Invoke(VictoriousPlayer, VictoryType);
+        VictorySound.Play();
     }
 
     private void ClearGame()
