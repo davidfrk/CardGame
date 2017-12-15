@@ -31,8 +31,12 @@ public class GameManager : MonoBehaviour {
     internal VictoryType VictoryType;
     internal Player VictoriousPlayer;
     public UnityEvent GameStart;
+    public UnityEvent ClearEvent;
 
     internal bool isPlaying = false;
+
+    [Header("Players")]
+    public List<Player> players;
 
     GameManager()
     {
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame()
     {
+        players[0].isMyTurn = true;
         isPlaying = true;
         GameStart.Invoke();
     }
@@ -64,6 +69,23 @@ public class GameManager : MonoBehaviour {
         VictoriousPlayer = player;
         isPlaying = false;
         VictoryEvent.Invoke(VictoriousPlayer, VictoryType);
+    }
+
+    private void ClearGame()
+    {
+        ClearEvent.Invoke();
+    }
+
+    public void Exit()
+    {
+        ClearGame();
+        Application.Quit();
+    }
+
+    public void Rematch()
+    {
+        ClearGame();
+        Invoke("StartGame", 1f);
     }
 }
 

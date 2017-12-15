@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public Player Enemy;
     public LayerMask CardLayer;
 
-    public bool isMyTurn = false;
+    internal bool isMyTurn = false;
     private Ray ray;
     private RaycastHit hit;
 
@@ -21,11 +21,13 @@ public class Player : MonoBehaviour {
     void Start () {
         stats.Stat[0].StatEvent.AddListener(VictoryCondition);
         GameManager.instance.GameStart.AddListener(OnGameStart);
+        GameManager.instance.ClearEvent.AddListener(Clear);
 	}
 
     public void OnGameStart()
     {
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
+        isFirstTurn = true;
         if (isMyTurn)
         {
             isMyTurn = false;
@@ -71,7 +73,10 @@ public class Player : MonoBehaviour {
     {
         ShowCards(false);
         isMyTurn = false;
-        Enemy.StartTurn();
+        if (GameManager.instance.isPlaying)
+        {
+            Enemy.StartTurn();
+        }
     }
 
     public void UseCard(int pos, Player Target)
@@ -156,7 +161,7 @@ public class Player : MonoBehaviour {
 
     private void Update()
     {
-        if (!isMyTurn)
+        if (!isMyTurn || !GameManager.instance.isPlaying)
             return;
 
         if (Input.GetMouseButtonDown(0))
@@ -175,6 +180,14 @@ public class Player : MonoBehaviour {
                 Card card = hit.collider.GetComponentInParent<Card>();
                 Discard(card.PosInHand);
             }
+        }
+    }
+
+    public void Clear()
+    {
+        for (int i = 0; i < numberOfCards; i++)
+        {
+            Destroy(Hand[i].gameObject);
         }
     }
 }

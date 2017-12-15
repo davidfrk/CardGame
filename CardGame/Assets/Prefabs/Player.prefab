@@ -51,6 +51,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d611ea45162a4f648849fc4699b9e154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats:
+    Stat:
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - value: 0
+      StatEvent:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   Hand:
   - {fileID: 0}
   - {fileID: 0}
@@ -64,4 +106,3 @@ MonoBehaviour:
   CardLayer:
     serializedVersion: 2
     m_Bits: 256
-  isMyTurn: 0

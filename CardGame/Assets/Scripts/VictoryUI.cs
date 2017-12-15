@@ -22,10 +22,12 @@ public class VictoryUI : MonoBehaviour {
     public void RematchButton()
     {
         gameObject.SetActive(false);
+        GameManager.instance.Rematch();
     }
 
     public void ExitButton()
     {
         gameObject.SetActive(false);
+        GameManager.instance.Exit();
     }
 }

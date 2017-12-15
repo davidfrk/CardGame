@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RandomDeck : MonoBehaviour {
 
@@ -21,6 +22,7 @@ public class RandomDeck : MonoBehaviour {
         {
             cardsCount += cardCount.count;
         }
+        GameManager.instance.ClearEvent.AddListener(Clear);
     }
 
     private Card NextCard()
@@ -49,6 +51,11 @@ public class RandomDeck : MonoBehaviour {
             Destroy(graveyard.gameObject, GameManager.instance.DrawCardDuration);
         }
         graveyard = card;
+    }
+
+    public void Clear()
+    {
+        Destroy(graveyard.gameObject);
     }
 }
 

@@ -305,9 +305,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a6787aa1279224c8fb106dee96f11c28, type: 3}
   CardMovementSpeed: 2
   CardRotationSpeed: 2
-  DrawCardDuration: 3
+  DrawCardDuration: 2.5
   FlipCardDuration: 1.8
   StatsChangeEffectDuration: 3
   TurnStartSound: {fileID: 82670153214886788}
   VictorySound: {fileID: 82102088576829302}
   DiscardSound: {fileID: 82042773962266132}
+  VictoryEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VictoryEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  GameStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  ClearEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
