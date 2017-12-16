@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour {
     public UnityEvent GameStart;
     public UnityEvent ClearEvent;
 
+    [Header("Control")]
+    public float TimeToDiscard = 0.5f;
+
     internal bool isPlaying = false;
 
     [Header("Players")]

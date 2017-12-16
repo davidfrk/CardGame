@@ -164,6 +164,9 @@ public class Player : MonoBehaviour {
         if (!isMyTurn || !GameManager.instance.isPlaying)
             return;
 
+#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
+        //Use mouse
+
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -181,7 +184,42 @@ public class Player : MonoBehaviour {
                 Discard(card.PosInHand);
             }
         }
+#else
+        //UseTouch
+        Card selectedCard = null;
+        Vector2 touchOrigin;
+        float touchTime = float.MaxValue;
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.touches[0];
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchOrigin = touch.position;
+                ray = Camera.main.ScreenPointToRay(touchOrigin);
+                if (Physics.Raycast(ray, out hit, 50, CardLayer))
+                {
+                    selectedCard = hit.collider.GetComponentInParent<Card>();
+                    touchTime = Time.time;
+                }
+            }else if (touch.phase == TouchPhase.Ended && selectedCard != null)
+            {
+                if(Time.time - touchTime > GameManager.instance.TimeToDiscard)
+                {
+                    Discard(selectedCard.PosInHand);
+                    selectedCard = null;
+                }
+                else
+                {
+                    UseCard(selectedCard.PosInHand, Enemy);
+                    selectedCard = null;
+                }
+            }
+        }
+#endif
     }
+
 
     public void Clear()
     {
