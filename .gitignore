@@ -9,6 +9,7 @@ build_Data/
 build.exe
 UnityPlayer.dll
 WinPixEventRuntime.dll
+CardGame.apk
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
