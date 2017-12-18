@@ -14,9 +14,11 @@ public class Player : MonoBehaviour {
     private Ray ray;
     private RaycastHit hit;
 
-    private int numberOfCards = 8;
+    internal int numberOfCards = 8;
     private bool isFirstTurn = true;
     private int turn = 0;
+
+    public UnityEvent TurnStartEvent;
 
     void Start () {
         stats.Stat[0].StatEvent.AddListener(VictoryCondition);
@@ -67,6 +69,7 @@ public class Player : MonoBehaviour {
         isMyTurn = true;
         Debug.Log("Turn " + turn + " to " + this.gameObject);
         GameManager.instance.isVisualEffectsActive = true;
+        TurnStartEvent.Invoke();
     }
 
     public void OnTurnEnd()
@@ -77,6 +80,11 @@ public class Player : MonoBehaviour {
         {
             Enemy.StartTurn();
         }
+    }
+
+    public void UseCard(int pos)
+    {
+        UseCard(pos, Enemy);
     }
 
     public void UseCard(int pos, Player Target)
