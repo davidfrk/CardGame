@@ -17,6 +17,7 @@ public class RandomBot : MonoBehaviour {
         if (isActive)
         {
             player.TurnStartEvent.AddListener(Play);
+            player.mustOpenCards = false;
         }
     }
 

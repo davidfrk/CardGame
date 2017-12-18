@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     internal int numberOfCards = 8;
     private bool isFirstTurn = true;
     private int turn = 0;
+    public bool mustOpenCards = true;
 
     public UnityEvent TurnStartEvent;
 
@@ -114,6 +115,7 @@ public class Player : MonoBehaviour {
     public void DrawCard(int pos)
     {
         Hand[pos] = RandomDeck.instance.DrawCard();
+        Hand[pos].flipState = !mustOpenCards;
         Hand[pos].MoveTo(HandManager.instance.CardsTransforms[pos]);
         Hand[pos].PosInHand = pos;
     }
@@ -130,7 +132,10 @@ public class Player : MonoBehaviour {
 
     public void FlipCardsToStartTurn()
     {
-        FlipCards(false);
+        if (mustOpenCards)
+        {
+            FlipCards(false);
+        }
         Invoke("OnTurnStart", GameManager.instance.FlipCardDuration);
     }
 
