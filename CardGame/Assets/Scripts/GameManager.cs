@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour {
     public void Exit()
     {
         ClearGame();
-        Application.Quit();
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     public void Rematch()
