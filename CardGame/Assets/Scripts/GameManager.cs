@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour {
 
     static public GameManager instance;
 
+    [Header("GameMode")]
+    public GameModeType GameMode;
+
     [Header("StatsSymbols")]
     public Sprite[] StatsSymbols = new Sprite[8];
 
@@ -104,4 +107,11 @@ public enum VictoryType
 public class VictoryEvent : UnityEvent<Player, VictoryType>
 {
     
+}
+
+public enum GameModeType
+{
+    PVE,
+    PVP_Local,
+    PVP_Online
 }

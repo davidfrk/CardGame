@@ -14,7 +14,10 @@ public class RandomBot : MonoBehaviour {
 
     private void Start()
     {
-        if (isActive)
+        if (GameManager.instance.GameMode != GameModeType.PVE)
+        {
+            isActive = false;
+        }else if (isActive)
         {
             player.TurnStartEvent.AddListener(Play);
             player.mustOpenCards = false;

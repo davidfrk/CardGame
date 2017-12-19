@@ -451,7 +451,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player bla Won!!
+  m_Text: Player X Won!!
 --- !u!114 &114490099686438316
 MonoBehaviour:
   m_ObjectHideFlags: 1
