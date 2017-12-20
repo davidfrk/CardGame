@@ -85,32 +85,66 @@ public class Player : NetworkBehaviour {
         }
     }
 
+    [Command]
+    public void CmdUseCard(int pos)
+    {
+        RpcUseCard(pos);
+        UseCard(pos);
+    }
+
+    [ClientRpc]
+    private void RpcUseCard(int pos)
+    {
+        if (isServer) return;
+        UseCard(pos);
+    }
+
     public void UseCard(int pos)
     {
         UseCard(pos, Enemy);
     }
 
-    public void UseCard(int pos, Player Target)
+    private void UseCard(int pos, Player Target)
     {
+        Card card = Hand[pos];
         if (Hand[pos].isPlayable(this))
         {
+            //Debug.Log("UseCard " + card.name);
+
             isMyTurn = false;
-            Hand[pos].Activate(this, Target);
-            Hand[pos].Discard();
-            ServerDrawCard(pos);
+            card.Activate(this, Target);
+            card.Discard();
+            if (isServer)
+                ServerDrawCard(pos);
             Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
         }
         else
         {
+            //Debug.Log("Cant use card " + card.name);
             //PlaySound
         }
+    }
+
+    [Command]
+    public void CmdDiscard(int pos)
+    {
+        RpcDiscard(pos);
+        Discard(pos);
+    }
+
+    [ClientRpc]
+    private void RpcDiscard(int pos)
+    {
+        if (isServer) return;
+        Discard(pos);
     }
 
     public void Discard(int pos)
     {
         isMyTurn = false;
         Hand[pos].Discard();
-        ServerDrawCard(pos);
+        if (isServer)
+            ServerDrawCard(pos);
         Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
     }
 
@@ -192,7 +226,7 @@ public class Player : NetworkBehaviour {
 
     private void Update()
     {
-        if (!isMyTurn || !GameManager.instance.isPlaying)
+        if (!isMyTurn || !GameManager.instance.isPlaying || !isLocalPlayer)
             return;
 
 #if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
@@ -204,7 +238,7 @@ public class Player : NetworkBehaviour {
             if (Physics.Raycast(ray, out hit, 50, CardLayer))
             {
                 Card card = hit.collider.GetComponentInParent<Card>();
-                UseCard(card.PosInHand, Enemy);
+                CmdUseCard(card.PosInHand);
             }
         }else if (Input.GetMouseButtonDown(1))
         {
@@ -212,7 +246,7 @@ public class Player : NetworkBehaviour {
             if (Physics.Raycast(ray, out hit, 50, CardLayer))
             {
                 Card card = hit.collider.GetComponentInParent<Card>();
-                Discard(card.PosInHand);
+                CmdDiscard(card.PosInHand);
             }
         }
 #else
@@ -238,12 +272,12 @@ public class Player : NetworkBehaviour {
             {
                 if(Time.time - touchTime > GameManager.instance.TimeToDiscard)
                 {
-                    Discard(selectedCard.PosInHand);
+                    CmdDiscard(selectedCard.PosInHand);
                     selectedCard = null;
                 }
                 else
                 {
-                    UseCard(selectedCard.PosInHand, Enemy);
+                    CmdUseCard(selectedCard.PosInHand);
                     selectedCard = null;
                 }
             }

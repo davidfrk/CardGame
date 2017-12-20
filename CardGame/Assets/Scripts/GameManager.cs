@@ -67,6 +67,8 @@ public class GameManager : NetworkBehaviour {
 
     private void InitPlayers()
     {
+        players[0].name = "Player1";
+        players[1].name = "Player2";
         players[0].Enemy = players[1];
         players[1].Enemy = players[0];
 
