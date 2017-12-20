@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 224435641398235504}
   - component: {fileID: 114601040327333244}
   - component: {fileID: 82732051948299378}
+  - component: {fileID: 114886391921766978}
   m_Layer: 8
   m_Name: Fire
   m_TagString: Card
@@ -745,6 +746,38 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114886391921766978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644627350425478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 87
+    i1: 217
+    i2: 244
+    i3: 178
+    i4: 161
+    i5: 164
+    i6: 135
+    i7: 84
+    i8: 136
+    i9: 76
+    i10: 136
+    i11: 253
+    i12: 235
+    i13: 205
+    i14: 73
+    i15: 209
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114917128770006908
 MonoBehaviour:
   m_ObjectHideFlags: 1

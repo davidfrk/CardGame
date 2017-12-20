@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
 
     public Stats stats;
     public Card[] Hand = new Card[8];
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
     {
         for (int i = 0; i < numberOfCards; i++)
         {
-            DrawCard(i);
+            ServerDrawCard(i);
         }
     }
 
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour {
             isMyTurn = false;
             Hand[pos].Activate(this, Target);
             Hand[pos].Discard();
-            DrawCard(pos);
+            ServerDrawCard(pos);
             Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
         }
         else
@@ -110,16 +110,32 @@ public class Player : MonoBehaviour {
     {
         isMyTurn = false;
         Hand[pos].Discard();
-        DrawCard(pos);
+        ServerDrawCard(pos);
         Invoke("FlipCardsToEndTurn", GameManager.instance.DrawCardDuration);
     }
 
-    public void DrawCard(int pos)
+    [ServerCallback]
+    private void ServerDrawCard(int pos)
     {
-        Hand[pos] = RandomDeck.instance.DrawCard();
-        Hand[pos].flipState = !mustOpenCards;
-        Hand[pos].MoveTo(HandManager.instance.CardsTransforms[pos]);
-        Hand[pos].PosInHand = pos;
+        Card card = RandomDeck.instance.DrawCard();
+        InitCard(card, pos);
+        NetworkServer.Spawn(card.gameObject);
+        RpcDrawCard(card.gameObject, pos);
+    }
+
+    private void InitCard(Card card, int pos) {
+        Hand[pos] = card;
+        card.flipState = !mustOpenCards;
+        card.MoveTo(HandManager.instance.CardsTransforms[pos]);
+        card.PosInHand = pos;
+        card.Owner = this;
+    }
+
+    [ClientRpc]
+    private void RpcDrawCard(GameObject cardGO, int pos)
+    {
+        if (isServer) return;
+        InitCard(cardGO.GetComponent<Card>(), pos);
     }
 
     public void ApplyStats(Stats Effect)

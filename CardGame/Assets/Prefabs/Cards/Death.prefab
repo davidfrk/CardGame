@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 224234998353590080}
   - component: {fileID: 114762129127430442}
   - component: {fileID: 82411111487051586}
+  - component: {fileID: 114332538786233270}
   m_Layer: 8
   m_Name: Death
   m_TagString: Card
@@ -556,6 +557,38 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114332538786233270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1458633141196814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 174
+    i1: 240
+    i2: 121
+    i3: 22
+    i4: 8
+    i5: 157
+    i6: 190
+    i7: 148
+    i8: 186
+    i9: 60
+    i10: 161
+    i11: 213
+    i12: 105
+    i13: 120
+    i14: 101
+    i15: 174
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114352128128895712
 MonoBehaviour:
   m_ObjectHideFlags: 1

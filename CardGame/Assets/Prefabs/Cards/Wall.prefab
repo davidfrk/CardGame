@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 224620325010518108}
   - component: {fileID: 114867041873646714}
   - component: {fileID: 82612133707672872}
+  - component: {fileID: 114196442131218092}
   m_Layer: 8
   m_Name: Wall
   m_TagString: Card
@@ -449,6 +450,38 @@ MonoBehaviour:
   m_Text: 'Affects Owner
 
     Defense by 4'
+--- !u!114 &114196442131218092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1893105943523952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 89
+    i1: 178
+    i2: 179
+    i3: 23
+    i4: 103
+    i5: 203
+    i6: 30
+    i7: 148
+    i8: 122
+    i9: 82
+    i10: 96
+    i11: 191
+    i12: 4
+    i13: 74
+    i14: 189
+    i15: 186
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114199016549175452
 MonoBehaviour:
   m_ObjectHideFlags: 1

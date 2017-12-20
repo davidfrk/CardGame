@@ -85,9 +85,27 @@ public class GameManager : NetworkBehaviour {
             players.Add(player);
             if (players.Count == 2)
             {
-                Invoke("StartGame", 1f);
+                if (isServer)
+                {
+                    Invoke("ServerStartGame", 1f);
+                }
             }
         }
+    }
+
+    [ServerCallback]
+    private void ServerStartGame()
+    {
+        StartGame();
+        RpcStartGame();
+    }
+
+    [ClientRpc]
+    private void RpcStartGame()
+    {
+        if (isServer) return;
+
+        StartGame();
     }
 
     public void PlayerDied(Player player)

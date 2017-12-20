@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 224766368893456700}
   - component: {fileID: 114703292806778380}
   - component: {fileID: 82544946023161778}
+  - component: {fileID: 114481164450202208}
   m_Layer: 8
   m_Name: Balance
   m_TagString: Card
@@ -460,6 +461,38 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114481164450202208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862305978472058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 252
+    i1: 138
+    i2: 197
+    i3: 45
+    i4: 166
+    i5: 108
+    i6: 180
+    i7: 116
+    i8: 75
+    i9: 249
+    i10: 10
+    i11: 154
+    i12: 99
+    i13: 101
+    i14: 196
+    i15: 129
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114527914076221788
 MonoBehaviour:
   m_ObjectHideFlags: 1

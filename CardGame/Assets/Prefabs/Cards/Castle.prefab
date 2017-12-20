@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 224888161081869146}
   - component: {fileID: 114929585441714318}
   - component: {fileID: 82831234261306390}
+  - component: {fileID: 114947486145843006}
   m_Layer: 8
   m_Name: Castle
   m_TagString: Card
@@ -773,6 +774,38 @@ MonoBehaviour:
   costText: {fileID: 114923018100756232}
   costImage: {fileID: 114570713442737042}
   descriptionText: {fileID: 114848946302140524}
+--- !u!114 &114947486145843006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1585167408074224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 242
+    i1: 105
+    i2: 166
+    i3: 9
+    i4: 41
+    i5: 192
+    i6: 102
+    i7: 228
+    i8: 233
+    i9: 77
+    i10: 228
+    i11: 205
+    i12: 205
+    i13: 209
+    i14: 247
+    i15: 97
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114950822278963824
 MonoBehaviour:
   m_ObjectHideFlags: 1

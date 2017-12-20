@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 224925727214912240}
   - component: {fileID: 114388568052687818}
   - component: {fileID: 82196617595107998}
+  - component: {fileID: 114032496803336784}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Card
@@ -387,6 +388,38 @@ MonoBehaviour:
   m_EffectColor: {r: 0.30588236, g: 0.29803923, b: 0.2901961, a: 1}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
+--- !u!114 &114032496803336784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872367665741788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 221
+    i1: 129
+    i2: 246
+    i3: 123
+    i4: 32
+    i5: 62
+    i6: 178
+    i7: 212
+    i8: 169
+    i9: 88
+    i10: 174
+    i11: 198
+    i12: 199
+    i13: 14
+    i14: 197
+    i15: 15
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114053671302499922
 MonoBehaviour:
   m_ObjectHideFlags: 1

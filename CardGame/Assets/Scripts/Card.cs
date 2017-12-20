@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 [RequireComponent(typeof(AudioSource))]
-public class Card : MonoBehaviour {
+public class Card : NetworkBehaviour {
 
     [Header("Cost")]
     public int Cost;
@@ -20,17 +21,17 @@ public class Card : MonoBehaviour {
     public TargetPlayers targetPlayers;
     public TargetStats targetStats;
 
-    internal bool flipState = false;
-    internal Transform targetTransform;
-    internal Quaternion targetRotation;
-
-    internal int PosInHand;
-
     [Header("Design")]
     public Text cardName;
     public Text costText;
     public Image costImage;
     public Text descriptionText;
+
+    internal bool flipState = false;
+    internal Transform targetTransform;
+    internal Quaternion targetRotation;
+    internal Player Owner;
+    internal int PosInHand;
 
     private AudioSource audioEffect;
 

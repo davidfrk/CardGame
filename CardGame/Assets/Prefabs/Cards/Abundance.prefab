@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 224945420511074648}
   - component: {fileID: 114010324490940628}
   - component: {fileID: 82761291662873296}
+  - component: {fileID: 114519711802081452}
   m_Layer: 8
   m_Name: Abundance
   m_TagString: Card
@@ -578,6 +579,38 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114519711802081452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127065656293206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 97
+    i1: 112
+    i2: 115
+    i3: 21
+    i4: 230
+    i5: 125
+    i6: 117
+    i7: 212
+    i8: 168
+    i9: 244
+    i10: 158
+    i11: 139
+    i12: 215
+    i13: 111
+    i14: 187
+    i15: 210
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114524316806445642
 MonoBehaviour:
   m_ObjectHideFlags: 1
