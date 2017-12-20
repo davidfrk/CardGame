@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 
 public class Player : MonoBehaviour {
 
     public Stats stats;
     public Card[] Hand = new Card[8];
-    public Player Enemy;
+    internal Player Enemy;
     public LayerMask CardLayer;
 
     internal bool isMyTurn = false;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour {
         stats.Stat[0].StatEvent.AddListener(VictoryCondition);
         GameManager.instance.GameStart.AddListener(OnGameStart);
         GameManager.instance.ClearEvent.AddListener(Clear);
+        GameManager.instance.AddPlayer(this);
 	}
 
     public void OnGameStart()

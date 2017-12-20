@@ -5,15 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
 
-    public Player player;
+    internal Player player;
     public StatUI[] stats = new StatUI[8];
-	
-	void Start () {
-        Subscribe(player);
-	}
 
     public void Subscribe(Player player)
     {
+        this.player = player;
         for(int i = 0; i < 8; i++)
         {
             player.stats.Stat[i].StatEvent.AddListener(stats[i].OnStatChange);

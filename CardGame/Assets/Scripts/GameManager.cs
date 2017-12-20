@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
     static public GameManager instance;
 
@@ -42,7 +43,8 @@ public class GameManager : MonoBehaviour {
 
     internal bool isPlaying = false;
 
-    [Header("Players")]
+    [Header("PlayersUI")]
+    public List<PlayerUI> playersUI;
     public List<Player> players;
 
     GameManager()
@@ -52,14 +54,40 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("StartGame", 1f);
+        
     }
 
-    public void StartGame()
+    private void StartGame()
     {
+        InitPlayers();
         players[0].isMyTurn = true;
         isPlaying = true;
         GameStart.Invoke();
+    }
+
+    private void InitPlayers()
+    {
+        players[0].Enemy = players[1];
+        players[1].Enemy = players[0];
+
+        playersUI[0].Subscribe(players[0]);
+        playersUI[1].Subscribe(players[1]);
+    }
+
+    public void AddPlayer(Player player)
+    {
+        if (players.Count >= 2)
+        {
+            Debug.LogError("Trying to add more than two players in game");
+        }
+        else
+        {
+            players.Add(player);
+            if (players.Count == 2)
+            {
+                Invoke("StartGame", 1f);
+            }
+        }
     }
 
     public void PlayerDied(Player player)
