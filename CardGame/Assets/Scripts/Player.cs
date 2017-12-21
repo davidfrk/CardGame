@@ -27,16 +27,26 @@ public class Player : NetworkBehaviour {
         GameManager.instance.GameStart.AddListener(OnGameStart);
         GameManager.instance.ClearEvent.AddListener(Clear);
         GameManager.instance.AddPlayer(this);
-	}
+        InitGameMode();
+    }
 
     public void OnGameStart()
     {
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
         isFirstTurn = true;
+        
         if (isMyTurn)
         {
             isMyTurn = false;
             StartTurn();
+        }
+    }
+
+    private void InitGameMode()
+    {
+        if (GameManager.instance.GameMode == GameModeType.PVP_Online && !isLocalPlayer)
+        {
+            mustOpenCards = false;
         }
     }
 

@@ -44,6 +44,7 @@ public class GameManager : NetworkBehaviour {
     internal bool isPlaying = false;
 
     [Header("PlayersUI")]
+    public List<Transform> playersPos;
     public List<PlayerUI> playersUI;
     public List<Player> players;
 
@@ -59,21 +60,20 @@ public class GameManager : NetworkBehaviour {
 
     private void StartGame()
     {
-        InitPlayers();
+        players[0].Enemy = players[1];
+        players[1].Enemy = players[0];
         players[0].isMyTurn = true;
         isPlaying = true;
         GameStart.Invoke();
     }
 
-    private void InitPlayers()
+    private void InitPlayer(int player)
     {
-        players[0].name = "Player1";
-        players[1].name = "Player2";
-        players[0].Enemy = players[1];
-        players[1].Enemy = players[0];
+        players[player].transform.position = playersPos[player].position;
+        players[player].transform.rotation = playersPos[player].rotation;
 
-        playersUI[0].Subscribe(players[0]);
-        playersUI[1].Subscribe(players[1]);
+        playersUI[player].Subscribe(players[player]);
+        players[player].name = "Player " + (player + 1);
     }
 
     public void AddPlayer(Player player)
@@ -85,6 +85,7 @@ public class GameManager : NetworkBehaviour {
         else
         {
             players.Add(player);
+            InitPlayer(players.Count - 1);
             if (players.Count == 2)
             {
                 if (isServer)
