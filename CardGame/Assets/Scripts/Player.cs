@@ -254,6 +254,7 @@ public class Player : NetworkBehaviour {
     private void CmdRematch()
     {
         wantRematch = true;
+        GameManager.instance.RematchStatus.Invoke();
         RpcWantToRematch();
         GameManager.instance.EvaluateRematch();
     }

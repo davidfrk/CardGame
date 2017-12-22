@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccf63863855b87409695020732d5412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameMode: 1
+  GameMode: 2
   StatsSymbols:
   - {fileID: 21300000, guid: b53f3d7b9eb7b43af97f4fbfa685a115, type: 3}
   - {fileID: 21300000, guid: 40c8c3e0dc28b4b528376525f84fa1e5, type: 3}
@@ -305,6 +305,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c2efd48f02c3f4dda825950570186fcf, type: 3}
   - {fileID: 21300000, guid: e283a689275804caa8d9b216cad15ddc, type: 3}
   - {fileID: 21300000, guid: a6787aa1279224c8fb106dee96f11c28, type: 3}
+  CheckBoxOpenMark: {fileID: 21300000, guid: 4a60f9dbfdccd422eabc6a34d9043fb0, type: 3}
+  CheckBoxClosedMark: {fileID: 21300000, guid: 471dddd3448b24a8ebee7497c4833508, type: 3}
   CardMovementSpeed: 2
   CardRotationSpeed: 2
   DrawCardDuration: 2.5
@@ -327,7 +329,15 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  RematchStatus:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   TimeToDiscard: 0.5
+  playersPos:
+  - {fileID: 0}
+  - {fileID: 0}
   playersUI:
   - {fileID: 0}
   - {fileID: 0}
