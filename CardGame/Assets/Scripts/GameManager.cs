@@ -16,6 +16,10 @@ public class GameManager : NetworkBehaviour {
     [Header("StatsSymbols")]
     public Sprite[] StatsSymbols = new Sprite[8];
 
+    [Header("UISymbols")]
+    public Sprite CheckBoxOpenMark;
+    public Sprite CheckBoxClosedMark;
+
     [Header("CardEffects")]
     public float CardMovementSpeed = 2;
     public float CardRotationSpeed = 2;
@@ -37,6 +41,7 @@ public class GameManager : NetworkBehaviour {
     internal Player VictoriousPlayer;
     public UnityEvent GameStart;
     public UnityEvent ClearEvent;
+    public UnityEvent RematchStatus;
 
     [Header("Control")]
     public float TimeToDiscard = 0.5f;
@@ -129,7 +134,7 @@ public class GameManager : NetworkBehaviour {
         VictorySound.Play();
     }
 
-    private void ClearGame()
+    public void ClearGame()
     {
         ClearEvent.Invoke();
     }
@@ -140,10 +145,32 @@ public class GameManager : NetworkBehaviour {
         SceneManager.LoadScene("MainMenuScene");
     }
 
-    public void Rematch()
+    [Server]
+    public void EvaluateRematch()
+    {
+        if (players.Count == 2 && players[0].wantRematch && players[1].wantRematch)
+        {
+            ServerRematch();
+        }
+    }
+
+    [Server]
+    public void ServerRematch()
     {
         ClearGame();
-        Invoke("StartGame", 1f);
+        ServerStartGame();
+    }
+
+    public Sprite GetCheckBoxSprite(bool state)
+    {
+        if (state)
+        {
+            return CheckBoxClosedMark;
+        }
+        else
+        {
+            return CheckBoxOpenMark;
+        }
     }
 }
 

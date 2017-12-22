@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour {
 
+    static public Player LocalPlayer;
+
     public Stats stats;
     public Card[] Hand = new Card[8];
     internal Player Enemy;
@@ -22,7 +24,13 @@ public class Player : NetworkBehaviour {
 
     public UnityEvent TurnStartEvent;
 
+    internal bool wantRematch = false;
+
     void Start () {
+        if (isLocalPlayer)
+        {
+            LocalPlayer = this;
+        }
         stats.Stat[0].StatEvent.AddListener(VictoryCondition);
         GameManager.instance.GameStart.AddListener(OnGameStart);
         GameManager.instance.ClearEvent.AddListener(Clear);
@@ -34,6 +42,8 @@ public class Player : NetworkBehaviour {
     {
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
         isFirstTurn = true;
+
+        wantRematch = false;
         
         if (isMyTurn)
         {
@@ -234,6 +244,28 @@ public class Player : NetworkBehaviour {
         }
     }
 
+    public void TryRematch()
+    {
+        //GameManager.instance.ClearGame();
+        CmdRematch();
+    }
+
+    [Command]
+    private void CmdRematch()
+    {
+        wantRematch = true;
+        RpcWantToRematch();
+        GameManager.instance.EvaluateRematch();
+    }
+
+    [ClientRpc]
+    private void RpcWantToRematch()
+    {
+        if (isServer) return;
+        wantRematch = true;
+        GameManager.instance.RematchStatus.Invoke();
+    }
+
     private void Update()
     {
         if (!isMyTurn || !GameManager.instance.isPlaying || !isLocalPlayer)
@@ -300,7 +332,10 @@ public class Player : NetworkBehaviour {
     {
         for (int i = 0; i < numberOfCards; i++)
         {
-            Destroy(Hand[i].gameObject);
+            if (Hand[i] != null)
+            {
+                Destroy(Hand[i].gameObject);
+            }
         }
     }
 }
