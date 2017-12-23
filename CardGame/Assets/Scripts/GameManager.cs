@@ -53,6 +53,8 @@ public class GameManager : NetworkBehaviour {
     public List<PlayerUI> playersUI;
     public List<Player> players;
 
+    internal GameObject playerPrefab;
+
     GameManager()
     {
         instance = this;
@@ -60,7 +62,18 @@ public class GameManager : NetworkBehaviour {
 
     private void Start()
     {
-        
+        playerPrefab = NetworkManager.singleton.playerPrefab;
+        if (GameMode == GameModeType.PVE)
+        {
+            GameObject botGO = Instantiate(playerPrefab);
+            RandomBot bot = botGO.GetComponent<RandomBot>();
+            bot.isActive = true;
+            NetworkServer.Spawn(botGO);
+        }else if (GameMode == GameModeType.PVP_Local)
+        {
+            GameObject playerGO = Instantiate(playerPrefab);
+            NetworkServer.Spawn(playerGO);
+        }
     }
 
     private void StartGame()
@@ -148,7 +161,10 @@ public class GameManager : NetworkBehaviour {
     [Server]
     public void EvaluateRematch()
     {
-        if (players.Count == 2 && players[0].wantRematch && players[1].wantRematch)
+        if (GameMode == GameModeType.PVP_Local)
+        {
+            ServerRematch();
+        }else if (players.Count == 2 && players[0].wantRematch && players[1].wantRematch)
         {
             ServerRematch();
         }

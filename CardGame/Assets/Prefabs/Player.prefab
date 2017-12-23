@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4471082153938984}
   - component: {fileID: 114238391523474928}
   - component: {fileID: 114540341005747876}
+  - component: {fileID: 114471802363553572}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -340,6 +341,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114471802363553572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073962217835870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e6c193a2cba7f409bc4add3518c214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!114 &114540341005747876
 MonoBehaviour:
   m_ObjectHideFlags: 1

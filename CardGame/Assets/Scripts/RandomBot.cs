@@ -20,6 +20,7 @@ public class RandomBot : MonoBehaviour {
         }else if (isActive)
         {
             player.TurnStartEvent.AddListener(Play);
+            GameManager.instance.VictoryEvent.AddListener(OnVictory);
             player.mustOpenCards = false;
         }
     }
@@ -39,5 +40,15 @@ public class RandomBot : MonoBehaviour {
         {
             player.Discard(Random.Range(0, player.numberOfCards));
         }
+    }
+
+    private void OnVictory(Player player, VictoryType type)
+    {
+        Invoke("TryRematch", 1);
+    }
+
+    private void TryRematch()
+    {
+        player.TryRematch();
     }
 }

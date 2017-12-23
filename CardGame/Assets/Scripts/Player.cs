@@ -269,10 +269,10 @@ public class Player : NetworkBehaviour {
 
     private void Update()
     {
-        if (!isMyTurn || !GameManager.instance.isPlaying || !isLocalPlayer)
+        if (!isMyTurn || !GameManager.instance.isPlaying || (GameManager.instance.GameMode != GameModeType.PVP_Local && !isLocalPlayer))
             return;
 
-#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
+//#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
         //Use mouse
 
         if (Input.GetMouseButtonDown(0))
@@ -292,7 +292,7 @@ public class Player : NetworkBehaviour {
                 CmdDiscard(card.PosInHand);
             }
         }
-#else
+//#else
         //UseTouch
         Card selectedCard = null;
         Vector2 touchOrigin;
@@ -325,7 +325,7 @@ public class Player : NetworkBehaviour {
                 }
             }
         }
-#endif
+//#endif
     }
 
 
