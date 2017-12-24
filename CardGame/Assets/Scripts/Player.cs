@@ -54,7 +54,7 @@ public class Player : NetworkBehaviour {
 
     private void InitGameMode()
     {
-        if (GameManager.instance.GameMode == GameModeType.PVP_Online && !isLocalPlayer)
+        if (GameManager.GameMode == GameModeType.PVP_Online && !isLocalPlayer)
         {
             mustOpenCards = false;
         }
@@ -269,7 +269,7 @@ public class Player : NetworkBehaviour {
 
     private void Update()
     {
-        if (!isMyTurn || !GameManager.instance.isPlaying || (GameManager.instance.GameMode != GameModeType.PVP_Local && !isLocalPlayer))
+        if (!isMyTurn || !GameManager.instance.isPlaying || (GameManager.GameMode != GameModeType.PVP_Local && !isLocalPlayer))
             return;
 
 //#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR

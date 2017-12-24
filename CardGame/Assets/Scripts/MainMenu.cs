@@ -26,17 +26,20 @@ public class MainMenu : MonoBehaviour {
 
     public void PVEButton()
     {
-        SceneManager.LoadScene("PvE_Scene");
+        GameManager.GameMode = GameModeType.PVE;
+        SceneManager.LoadScene("GameScene");
     }
 
     public void PVPButton()
     {
-        SceneManager.LoadScene("Pvp_Scene");
+        GameManager.GameMode = GameModeType.PVP_Local;
+        SceneManager.LoadScene("GameScene");
     }
 
     public void MultiplayerButton()
     {
-        SceneManager.LoadScene("PrototypeScene");
+        GameManager.GameMode = GameModeType.PVP_Online;
+        SceneManager.LoadScene("GameScene");
     }
 
     public void BackButton()

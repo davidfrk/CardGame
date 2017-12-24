@@ -14,7 +14,7 @@ public class RandomBot : MonoBehaviour {
 
     private void Start()
     {
-        if (GameManager.instance.GameMode != GameModeType.PVE)
+        if (GameManager.GameMode != GameModeType.PVE)
         {
             isActive = false;
         }else if (isActive)

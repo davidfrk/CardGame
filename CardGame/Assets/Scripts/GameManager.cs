@@ -9,9 +9,7 @@ using UnityEngine.Networking;
 public class GameManager : NetworkBehaviour {
 
     static public GameManager instance;
-
-    [Header("GameMode")]
-    public GameModeType GameMode;
+    static public GameModeType GameMode = GameModeType.PVP_Online;
 
     [Header("StatsSymbols")]
     public Sprite[] StatsSymbols = new Sprite[8];
@@ -63,16 +61,29 @@ public class GameManager : NetworkBehaviour {
     private void Start()
     {
         playerPrefab = NetworkManager.singleton.playerPrefab;
-        if (GameMode == GameModeType.PVE)
+        
+        switch (GameMode)
         {
-            GameObject botGO = Instantiate(playerPrefab);
-            RandomBot bot = botGO.GetComponent<RandomBot>();
-            bot.isActive = true;
-            NetworkServer.Spawn(botGO);
-        }else if (GameMode == GameModeType.PVP_Local)
-        {
-            GameObject playerGO = Instantiate(playerPrefab);
-            NetworkServer.Spawn(playerGO);
+            case GameModeType.PVE:
+                {
+                    GameObject botGO = Instantiate(playerPrefab);
+                    RandomBot bot = botGO.GetComponent<RandomBot>();
+                    bot.isActive = true;
+                    NetworkServer.Spawn(botGO);
+                    break;
+                }
+            case GameModeType.PVP_Local:
+                {
+                    GameObject playerGO = Instantiate(playerPrefab);
+                    NetworkServer.Spawn(playerGO);
+                    break;
+                }
+            case GameModeType.PVP_Online:
+                {
+                    break;
+                }
+            default:
+                break;
         }
     }
 
