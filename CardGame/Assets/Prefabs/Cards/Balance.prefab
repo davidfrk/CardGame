@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 114703292806778380}
   - component: {fileID: 82544946023161778}
   - component: {fileID: 114481164450202208}
+  - component: {fileID: 54958966502911240}
   m_Layer: 8
   m_Name: Balance
   m_TagString: Card
@@ -255,6 +256,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &54958966502911240
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862305978472058}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65782983332073034
 BoxCollider:
   m_ObjectHideFlags: 1

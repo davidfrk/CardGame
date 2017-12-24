@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 114986869634150136}
   - component: {fileID: 82315280808840950}
   - component: {fileID: 114371316926175966}
+  - component: {fileID: 54737877494626348}
   m_Layer: 8
   m_Name: HolyBook
   m_TagString: Card
@@ -255,6 +256,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &54737877494626348
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606387135882118}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65353406621360126
 BoxCollider:
   m_ObjectHideFlags: 1

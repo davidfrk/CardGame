@@ -163,9 +163,13 @@ public class GameManager : NetworkBehaviour {
         ClearEvent.Invoke();
     }
 
-    public void Exit()
+    public static void BackToMainMenu()
     {
-        ClearGame();
+        if (instance != null)
+        {
+            instance.ClearGame();
+        }
+        NetworkManager.Shutdown();
         SceneManager.LoadScene("MainMenuScene");
     }
 

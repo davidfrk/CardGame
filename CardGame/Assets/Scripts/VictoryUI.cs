@@ -37,7 +37,7 @@ public class VictoryUI : MonoBehaviour {
     public void ExitButton()
     {
         gameObject.SetActive(false);
-        GameManager.instance.Exit();
+        GameManager.BackToMainMenu();
     }
 
     public void UpdateRematchStatus()
