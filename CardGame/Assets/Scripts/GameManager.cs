@@ -100,6 +100,7 @@ public class GameManager : NetworkBehaviour {
     {
         players[player].transform.position = playersPos[player].position;
         players[player].transform.rotation = playersPos[player].rotation;
+        players[player].transform.localScale = playersPos[player].localScale;
 
         playersUI[player].Subscribe(players[player]);
         players[player].name = "Player " + (player + 1);
