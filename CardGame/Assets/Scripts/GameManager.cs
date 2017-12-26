@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 public class GameManager : NetworkBehaviour {
 
     static public GameManager instance;
-    static public GameModeType GameMode = GameModeType.PVP_Online;
+    static public GameModeType GameMode = GameModeType.PVP_Local;
 
     [Header("StatsSymbols")]
     public Sprite[] StatsSymbols = new Sprite[8];
