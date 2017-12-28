@@ -40,6 +40,7 @@ public class Player : NetworkBehaviour {
 
     public void OnGameStart()
     {
+        this.CancelInvoke();
         stats.Set(30, 5, 2, 5, 2, 5, 2, 5);
         isFirstTurn = true;
 
