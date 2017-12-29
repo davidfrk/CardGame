@@ -422,9 +422,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Affects Target
+  m_Text: 'Affects Enemy
 
-    Defense by -20'
+    Defense by 25'
 --- !u!114 &114086978097376928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -642,10 +642,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8574c1fd34d60964dbebb36f30b44d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 15
+  Cost: 10
   CostType: 5
   hasTarget: 1
-  EffectStrength: -20
+  EffectStrength: 25
   SecondaryEffectStrength: 0
   targetPlayers: 1
   targetStats: 1
@@ -685,7 +685,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 15
+  m_Text: 10
 --- !u!114 &114740069747245080
 MonoBehaviour:
   m_ObjectHideFlags: 1

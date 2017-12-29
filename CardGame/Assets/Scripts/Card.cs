@@ -62,9 +62,9 @@ public class Card : NetworkBehaviour {
                     ApplyEffect(Owner, 1);
                     break;
                 }
-            case TargetPlayers.Target:
+            case TargetPlayers.Enemy:
                 {
-                    ApplyEffect(Target, 1);
+                    ApplyEffect(Target, -1);
                     break;
                 }
             case TargetPlayers.Both:
@@ -225,7 +225,7 @@ public class Card : NetworkBehaviour {
 public enum TargetPlayers
 {
     Owner,
-    Target,
+    Enemy,
     Both,
     Steal
 }
