@@ -109,8 +109,11 @@ public class Player : NetworkBehaviour {
     [Command]
     public void CmdUseCard(int pos)
     {
-        RpcUseCard(pos);
-        UseCard(pos);
+        if (isMyTurn)
+        {
+            RpcUseCard(pos);
+            UseCard(pos);
+        }
     }
 
     [ClientRpc]
@@ -149,8 +152,11 @@ public class Player : NetworkBehaviour {
     [Command]
     public void CmdDiscard(int pos)
     {
-        RpcDiscard(pos);
-        Discard(pos);
+        if (isMyTurn)
+        {
+            RpcDiscard(pos);
+            Discard(pos);
+        }
     }
 
     [ClientRpc]
