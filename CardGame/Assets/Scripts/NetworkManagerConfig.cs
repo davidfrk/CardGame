@@ -8,13 +8,11 @@ using UnityEngine.Networking.Match;
 public class NetworkManagerConfig : MonoBehaviour {
 
     NetworkManager networkManager;
-    NetworkManagerHUD networkHUD;
     NetworkMatch networkMatch;
 
     private void Awake()
     {
         networkManager = GetComponent<NetworkManager>();
-        networkHUD = networkManager.GetComponent<NetworkManagerHUD>();
     }
 
     void Start () {
@@ -22,19 +20,16 @@ public class NetworkManagerConfig : MonoBehaviour {
         {
             case GameModeType.PVE:
                 {
-                    networkHUD.showGUI = false;
                     networkManager.StartHost();
                     break;
                 }
             case GameModeType.PVP_Local:
                 {
-                    networkHUD.showGUI = false;
                     networkManager.StartHost();
                     break;
                 }
             case GameModeType.PVP_Online:
                 {
-                    networkHUD.showGUI = false;
                     networkManager.StartMatchMaker();
                     networkManager.matchMaker.ListMatches(0, 20, "match", false, 0, 0, OnMatchList);
                     break;
@@ -60,17 +55,25 @@ public class NetworkManagerConfig : MonoBehaviour {
         }
         else
         {
-
+            GameManager.BackToMainMenu();
         }
     }
 
     private void OnMatchJoined(bool success, string extendedInfo, MatchInfo responseData)
     {
         networkManager.OnMatchJoined(success, extendedInfo, responseData);
+        if (!success)
+        {
+            GameManager.BackToMainMenu();
+        }
     }
 
     private void OnMatchCreate(bool success, string extendedInfo, MatchInfo responseData)
     {
         networkManager.OnMatchCreate(success, extendedInfo, responseData);
+        if (!success)
+        {
+            GameManager.BackToMainMenu();
+        }
     }
 }

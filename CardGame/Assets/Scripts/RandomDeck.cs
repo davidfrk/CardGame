@@ -56,7 +56,8 @@ public class RandomDeck : MonoBehaviour {
 
     public void Clear()
     {
-        Destroy(graveyard.gameObject);
+        if (graveyard != null)
+            Destroy(graveyard.gameObject);
     }
 }
 

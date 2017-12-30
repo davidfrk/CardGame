@@ -284,6 +284,12 @@ public class Player : NetworkBehaviour {
         if (!isMyTurn || !GameManager.instance.isPlaying || (GameManager.GameMode != GameModeType.PVP_Local && !isLocalPlayer))
             return;
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.BackToMainMenu();
+            return;
+        }
+
         //UseMouse
         if (Input.GetMouseButtonDown(0))
         {
@@ -291,7 +297,8 @@ public class Player : NetworkBehaviour {
             if (Physics.Raycast(ray, out hit, 50, CardLayer))
             {
                 Card card = hit.collider.GetComponentInParent<Card>();
-                CmdUseCard(card.PosInHand);
+                if (!card.isInGraveyard)
+                    CmdUseCard(card.PosInHand);
             }
         }else if (Input.GetMouseButtonDown(1))
         {
@@ -299,7 +306,8 @@ public class Player : NetworkBehaviour {
             if (Physics.Raycast(ray, out hit, 50, CardLayer))
             {
                 Card card = hit.collider.GetComponentInParent<Card>();
-                CmdDiscard(card.PosInHand);
+                if (!card.isInGraveyard)
+                    CmdDiscard(card.PosInHand);
             }
         }
 
@@ -351,6 +359,16 @@ public class Player : NetworkBehaviour {
             }
         }
     }
+    /*
+    private void OnDestroy()
+    {
+        if (GameManager.exiting == false)
+        {
+            Debug.Log("A player has disconnected");
+            GameManager.BackToMainMenu();
+        }
+    }
+    */
 }
 
 [System.Serializable]
