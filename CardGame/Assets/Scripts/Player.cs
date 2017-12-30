@@ -315,7 +315,14 @@ public class Player : NetworkBehaviour {
                 if (Physics.Raycast(ray, out hit, 50, CardLayer))
                 {
                     selectedCard = hit.collider.GetComponentInParent<Card>();
-                    touchTime = Time.time;
+                    if (selectedCard.isInGraveyard)
+                    {
+                        selectedCard = null;
+                    }
+                    else
+                    {
+                        touchTime = Time.time;
+                    }
                 }
             }else if (selectedCard != null)
             {

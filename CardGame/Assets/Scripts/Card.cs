@@ -32,6 +32,7 @@ public class Card : NetworkBehaviour {
     internal Quaternion targetRotation;
     internal Player Owner;
     internal int PosInHand;
+    internal bool isInGraveyard = false;
 
     private AudioSource audioEffect;
 
@@ -207,6 +208,7 @@ public class Card : NetworkBehaviour {
     public void Discard()
     {
         flipState = true;
+        isInGraveyard = true;
         MoveTo(RandomDeck.instance.Graveyard);
         RandomDeck.instance.AddToGraveyard(this);
         GameManager.instance.DiscardSound.Play();
