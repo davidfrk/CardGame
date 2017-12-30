@@ -24,6 +24,7 @@ public class VictoryUI : MonoBehaviour {
     public void OnVictory(Player player, VictoryType type)
     {
         victoryText.text = player.gameObject.name + " Won by " + type.ToString()+ "!!";
+        UpdateRematchStatus();
         gameObject.SetActive(true);
     }
 

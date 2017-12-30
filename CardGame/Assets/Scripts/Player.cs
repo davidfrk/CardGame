@@ -26,6 +26,11 @@ public class Player : NetworkBehaviour {
 
     internal bool wantRematch = false;
 
+    //Touch
+    float touchTime = float.MaxValue;
+    Card selectedCard = null;
+    Vector2 touchOrigin;
+
     void Start () {
         if (isLocalPlayer)
         {
@@ -279,9 +284,7 @@ public class Player : NetworkBehaviour {
         if (!isMyTurn || !GameManager.instance.isPlaying || (GameManager.GameMode != GameModeType.PVP_Local && !isLocalPlayer))
             return;
 
-//#if UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
-        //Use mouse
-
+        //UseMouse
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -299,16 +302,12 @@ public class Player : NetworkBehaviour {
                 CmdDiscard(card.PosInHand);
             }
         }
-//#else
-        //UseTouch
-        Card selectedCard = null;
-        Vector2 touchOrigin;
-        float touchTime = float.MaxValue;
 
+        //UseTouch
         if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
-
+            
             if (touch.phase == TouchPhase.Began)
             {
                 touchOrigin = touch.position;
@@ -318,21 +317,20 @@ public class Player : NetworkBehaviour {
                     selectedCard = hit.collider.GetComponentInParent<Card>();
                     touchTime = Time.time;
                 }
-            }else if (touch.phase == TouchPhase.Ended && selectedCard != null)
+            }else if (selectedCard != null)
             {
                 if(Time.time - touchTime > GameManager.instance.TimeToDiscard)
                 {
                     CmdDiscard(selectedCard.PosInHand);
                     selectedCard = null;
                 }
-                else
+                else if (touch.phase == TouchPhase.Ended)
                 {
                     CmdUseCard(selectedCard.PosInHand);
                     selectedCard = null;
                 }
             }
         }
-//#endif
     }
 
 
