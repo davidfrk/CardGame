@@ -14,6 +14,7 @@ public class Player : NetworkBehaviour {
     public LayerMask CardLayer;
 
     internal bool isMyTurn = false;
+    private RandomBot bot;
     private Ray ray;
     private RaycastHit hit;
 
@@ -25,11 +26,17 @@ public class Player : NetworkBehaviour {
     public UnityEvent TurnStartEvent;
 
     internal bool wantRematch = false;
+    internal float turnStartTime;
 
     //Touch
     float touchTime = float.MaxValue;
     Card selectedCard = null;
     Vector2 touchOrigin;
+
+    private void Awake()
+    {
+        bot = GetComponent<RandomBot>();
+    }
 
     void Start () {
         if (isLocalPlayer)
@@ -98,6 +105,7 @@ public class Player : NetworkBehaviour {
         isMyTurn = true;
         Debug.Log("Turn " + turn + " to " + this.gameObject);
         GameManager.instance.isVisualEffectsActive = true;
+        turnStartTime = Time.time;
         TurnStartEvent.Invoke();
     }
 
@@ -287,6 +295,12 @@ public class Player : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             GameManager.BackToMainMenu();
+            return;
+        }
+
+        if (Time.time - turnStartTime > GameManager.instance.TurnDuration)
+        {
+            bot.Play();
             return;
         }
 

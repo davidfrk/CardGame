@@ -42,6 +42,7 @@ public class GameManager : NetworkBehaviour {
     public UnityEvent RematchStatus;
 
     [Header("Control")]
+    public float TurnDuration = 20;
     public float TimeToDiscard = 0.5f;
 
     internal bool isPlaying = false;
