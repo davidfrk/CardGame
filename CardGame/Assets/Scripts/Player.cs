@@ -14,7 +14,7 @@ public class Player : NetworkBehaviour {
     public LayerMask CardLayer;
 
     internal bool isMyTurn = false;
-    private RandomBot bot;
+    private Bot bot;
     private Ray ray;
     private RaycastHit hit;
 
@@ -35,7 +35,7 @@ public class Player : NetworkBehaviour {
 
     private void Awake()
     {
-        bot = GetComponent<RandomBot>();
+        bot = GetComponent<Bot>();
     }
 
     void Start () {
@@ -191,7 +191,7 @@ public class Player : NetworkBehaviour {
     [ServerCallback]
     private void ServerDrawCard(int pos)
     {
-        Card card = RandomDeck.instance.DrawCard();
+        Card card = Deck.instance.DrawCard();
         InitCard(card, pos);
         NetworkServer.Spawn(card.gameObject);
         RpcDrawCard(card.gameObject, pos);

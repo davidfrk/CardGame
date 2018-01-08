@@ -209,8 +209,8 @@ public class Card : NetworkBehaviour {
     {
         flipState = true;
         isInGraveyard = true;
-        MoveTo(RandomDeck.instance.Graveyard);
-        RandomDeck.instance.AddToGraveyard(this);
+        MoveTo(Deck.instance.Graveyard);
+        Deck.instance.AddToGraveyard(this);
         GameManager.instance.DiscardSound.Play();
     }
 

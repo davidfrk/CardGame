@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomBot : MonoBehaviour {
+public class Bot : MonoBehaviour {
 
     private Player player;
     public bool isActive;

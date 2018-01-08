@@ -181,40 +181,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Graveyard: {fileID: 4153254822000108}
   Cards:
-  - card: {fileID: 114010324490940628, guid: 61707315e67d75d4a8f49e8bd76fbbd2, type: 2}
-    count: 1
-  - card: {fileID: 114388568052687818, guid: dd81f67b203eb2d4a958aec6c70ec50f, type: 2}
-    count: 3
-  - card: {fileID: 114703292806778380, guid: fc8ac52da66cb4744bf90a9a6365c481, type: 2}
-    count: 1
-  - card: {fileID: 114929585441714318, guid: f269a60929c066e4e94de4cdcdd1f761, type: 2}
-    count: 1
-  - card: {fileID: 114986869634150136, guid: 358d14408a59ee94ba0b2467dd8bcc0c, type: 2}
-    count: 1
-  - card: {fileID: 114460956890185868, guid: 6e9fcf7d4c335444b809ff0ad8e1a42c, type: 2}
-    count: 1
-  - card: {fileID: 114412961791268606, guid: 2bd8293bbdf947c40a29dd554655a0ff, type: 2}
-    count: 1
-  - card: {fileID: 114867041873646714, guid: 59b2b31767cb1e947a5260bf044abdba, type: 2}
-    count: 1
-  - card: {fileID: 114601040327333244, guid: 57d9f4b2a1a48754884c88fdebcd49d1, type: 2}
-    count: 1
-  - card: {fileID: 114762129127430442, guid: aef07916089dbe94ba3ca1d5697865ae, type: 2}
-    count: 1
-  - card: {fileID: 114636343476961048, guid: 08e1806e915913847a6f56c6b5d8c2c9, type: 2}
-    count: 1
-  - card: {fileID: 114930895395486672, guid: 7be0863abd6409b48a436835c5669330, type: 2}
-    count: 1
-  - card: {fileID: 114823592791249330, guid: 0c5e027729ccf1c47a481910500c29bb, type: 2}
-    count: 1
-  - card: {fileID: 114179299617289088, guid: 9eba686fceeb83948b69d2318158fcbb, type: 2}
-    count: 1
-  - card: {fileID: 114307661338277084, guid: 429b1aa020e42b844a98b2f6b496f309, type: 2}
-    count: 1
-  - card: {fileID: 114907110994645050, guid: c9d5ee77c6abb8e49a37963a5bb8640d, type: 2}
-    count: 1
-  - card: {fileID: 114453596909513410, guid: 88af9e95073c42848bb06cde7f6a681c, type: 2}
-    count: 1
+  - {fileID: 114010324490940628, guid: 61707315e67d75d4a8f49e8bd76fbbd2, type: 2}
+  - {fileID: 114388568052687818, guid: dd81f67b203eb2d4a958aec6c70ec50f, type: 2}
+  - {fileID: 114703292806778380, guid: fc8ac52da66cb4744bf90a9a6365c481, type: 2}
+  - {fileID: 114636343476961048, guid: 08e1806e915913847a6f56c6b5d8c2c9, type: 2}
+  - {fileID: 114930895395486672, guid: 7be0863abd6409b48a436835c5669330, type: 2}
+  - {fileID: 114929585441714318, guid: f269a60929c066e4e94de4cdcdd1f761, type: 2}
+  - {fileID: 114823592791249330, guid: 0c5e027729ccf1c47a481910500c29bb, type: 2}
+  - {fileID: 114762129127430442, guid: aef07916089dbe94ba3ca1d5697865ae, type: 2}
+  - {fileID: 114179299617289088, guid: 9eba686fceeb83948b69d2318158fcbb, type: 2}
+  - {fileID: 114601040327333244, guid: 57d9f4b2a1a48754884c88fdebcd49d1, type: 2}
+  - {fileID: 114986869634150136, guid: 358d14408a59ee94ba0b2467dd8bcc0c, type: 2}
+  - {fileID: 114460956890185868, guid: 6e9fcf7d4c335444b809ff0ad8e1a42c, type: 2}
+  - {fileID: 114412961791268606, guid: 2bd8293bbdf947c40a29dd554655a0ff, type: 2}
+  - {fileID: 114907110994645050, guid: c9d5ee77c6abb8e49a37963a5bb8640d, type: 2}
+  - {fileID: 114307661338277084, guid: 429b1aa020e42b844a98b2f6b496f309, type: 2}
+  - {fileID: 114453596909513410, guid: 88af9e95073c42848bb06cde7f6a681c, type: 2}
+  - {fileID: 114867041873646714, guid: 59b2b31767cb1e947a5260bf044abdba, type: 2}
+  infiniteDeck: 1
 --- !u!114 &114395445196194558
 MonoBehaviour:
   m_ObjectHideFlags: 1

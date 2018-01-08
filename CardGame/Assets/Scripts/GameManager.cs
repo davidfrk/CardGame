@@ -68,7 +68,7 @@ public class GameManager : NetworkBehaviour {
             case GameModeType.PVE:
                 {
                     GameObject botGO = Instantiate(playerPrefab);
-                    RandomBot bot = botGO.GetComponent<RandomBot>();
+                    Bot bot = botGO.GetComponent<Bot>();
                     bot.isActive = true;
                     NetworkServer.Spawn(botGO);
                     break;
